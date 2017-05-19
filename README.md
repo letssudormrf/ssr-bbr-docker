@@ -12,6 +12,10 @@ Also it can specify the vaule of "-p PORT -k PASSWORD -m METHOD -O PROTOCOL -o O
 
     docker run --privileged -d -p 465:465/tcp -p 465:465/udp --name ssr-bbr-docker letssudormrf/ssr-bbr-docker -p 465 -k password -m aes-128-ctr -O auth_aes128_sha1 -o http_post
 
+Keep the Docker container running automatically after starting, add **--restart always**.
+
+    docker run --restart always --privileged -d -p 443:443/tcp -p 443:443/udp --name ssr-bbr-docker letssudormrf/ssr-bbr-docker
+
 **important:** For using the feature of multi-user on one port, please set up the multi-user's port greater than 65535
 
 To add multi-user imformation

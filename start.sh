@@ -25,11 +25,6 @@ then
 fi
 cat mudb.json | awk '$1=="\"port\":" {print $NF+0}' | awk '$NF<=65535' > /root/mudb_port.txt
 
-while read line
-do
-	iptables -A INPUT -i eth0 -p tcp ! -s 127.0.0.1 --dport $line -j DROP
-done < /root/mudb_port.txt
-
 echo -n "" > /root/rinetd.conf
 while read line
 do

@@ -4,7 +4,7 @@ SSR-BBR-DOCKER
 Quick Start
 -----------
 
-This image uses Shadowsocksr multi-user feature to run the multi-user on one port containers with BBR tcp congestion.
+This image uses Shadowsocksr multi-user feature to run the multi-user on one port containers with 3 types(BBR/BBR_POWERED/PCC) tcp congestion.
 
     docker run --privileged -d -p 443:443/tcp -p 443:443/udp --name ssr-bbr-docker letssudormrf/ssr-bbr-docker
 
@@ -56,6 +56,16 @@ To recovery the mudb.json configuration file from local mudb.json.bak
 To redirect the authentication failed connecting to others ip or website (IP:1.2.3.4 port:80)
 
     docker exec -it ssr-bbr-docker sed -i "s/^.*\"redirect\":.*$/    \"redirect\": \"1.2.3.4:80\",/" user-config.json
+    docker restart ssr-bbr-docker
+
+To change to the others congestion, then restart the container (Default:BBR_POWERED)
+
+    sed -i 's/^\/root\/rinetd_.*/\/root\/rinetd_bbr -f -c \/root\/rinetd.conf raw eth0 \&/' start.sh
+    
+    sed -i 's/^\/root\/rinetd_.*/\/root\/rinetd_bbr_powered -f -c \/root\/rinetd.conf raw eth0 \&/' start.sh
+    
+    sed -i 's/^\/root\/rinetd_.*/\/root\/rinetd_pcc -f -c \/root\/rinetd.conf raw eth0 \&/' start.sh
+    
     docker restart ssr-bbr-docker
 
 IPv6 Connection

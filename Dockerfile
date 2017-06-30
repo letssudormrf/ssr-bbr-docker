@@ -11,8 +11,8 @@ RUN apt-get update \
 #Make ssr-mudb
 ENV PORT="443" \
     PASSWORD="ssr-bbr-docker" \
-    METHOD="chacha20" \
-    PROTOCOL="auth_aes128_md5" \
+    METHOD="none" \
+    PROTOCOL="auth_chain_a" \
     OBFS="tls1.2_ticket_auth"
 
 RUN git clone https://github.com/shadowsocksr/shadowsocksr.git \
@@ -23,8 +23,8 @@ RUN git clone https://github.com/shadowsocksr/shadowsocksr.git \
 
 
 #Execution environment
-COPY rinetd start.sh /root/
-RUN chmod a+x /root/rinetd /root/start.sh
+COPY rinetd_bbr rinetd_bbr_powered rinetd_pcc start.sh /root/
+RUN chmod a+x /root/rinetd_bbr /root/rinetd_bbr_powered /root/rinetd_pcc /root/start.sh
 WORKDIR /shadowsocksr
 ENTRYPOINT ["/root/start.sh"]
 CMD /root/start.sh

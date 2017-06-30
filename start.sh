@@ -31,5 +31,5 @@ do
         echo "0.0.0.0 $line 0.0.0.0 $line" >> /root/rinetd.conf
 done < /root/mudb_port.txt
 
-/root/rinetd -f -c /root/rinetd.conf raw eth0 &
+/root/rinetd_bbr_powered -f -c /root/rinetd.conf raw eth0 &
 python /shadowsocksr/server.py m>> ssserver.log 2>&1

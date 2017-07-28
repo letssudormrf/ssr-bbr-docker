@@ -15,7 +15,7 @@ ENV PORT="443" \
     PROTOCOL="auth_chain_a" \
     OBFS="tls1.2_ticket_auth"
 
-RUN git clone https://github.com/shadowsocksr/shadowsocksr.git \
+RUN git clone https://github.com/letssudormrf/shadowsocksr.git \
     && cd shadowsocksr \
     && bash initcfg.sh \
     && sed -i 's/sspanelv2/mudbjson/' userapiconfig.py \

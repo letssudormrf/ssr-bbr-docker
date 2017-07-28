@@ -60,11 +60,11 @@ To redirect the authentication failed connecting to others ip or website (IP:1.2
 
 To change to the others congestion, then restart the container (Default:BBR_POWERED)
 
-    sed -i 's/^\/root\/rinetd_.*/\/root\/rinetd_bbr -f -c \/root\/rinetd.conf raw eth0 \&/' start.sh
+    docker exec -it ssr-bbr-docker sed -i 's/^\/root\/rinetd_.*/\/root\/rinetd_bbr -f -c \/root\/rinetd.conf raw eth0 \&/' start.sh
     
-    sed -i 's/^\/root\/rinetd_.*/\/root\/rinetd_bbr_powered -f -c \/root\/rinetd.conf raw eth0 \&/' start.sh
+    docker exec -it ssr-bbr-docker sed -i 's/^\/root\/rinetd_.*/\/root\/rinetd_bbr_powered -f -c \/root\/rinetd.conf raw eth0 \&/' start.sh
     
-    sed -i 's/^\/root\/rinetd_.*/\/root\/rinetd_pcc -f -c \/root\/rinetd.conf raw eth0 \&/' start.sh
+    docker exec -it ssr-bbr-docker sed -i 's/^\/root\/rinetd_.*/\/root\/rinetd_pcc -f -c \/root\/rinetd.conf raw eth0 \&/' start.sh
     
     docker restart ssr-bbr-docker
 
